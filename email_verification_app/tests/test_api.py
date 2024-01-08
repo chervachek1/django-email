@@ -5,6 +5,7 @@ from email_verification_app.models import EmailVerificationResult
 class MyAPITestCase(TestCase):
     def setUp(self) -> None:
         self.client = Client()
+        self.email = "test_for_delete@gmail.com"
 
     def test_verify_email_post_success(self) -> None:
         email = "test@gmail.com"
@@ -26,3 +27,11 @@ class MyAPITestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn("emails", response.context)
         self.assertIn("form_errors", response.context)
+
+    def test_delete_verify_result(self) -> None:
+        result = EmailVerificationResult.objects.create(
+            email=self.email, status="valid"
+        )
+        response = self.client.get(f"/emails/delete_email/{result.id}/")
+        result = EmailVerificationResult.objects.filter(pk=result.id).first()
+        self.assertIsNone(result)
