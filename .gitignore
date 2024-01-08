@@ -1,0 +1,37 @@
+# Virtual environment
+venv/
+
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Django settings
+*.env
+
+# Ignore local settings (if you're using a settings module with a separate local_settings.py file)
+local_settings.py
+
+# Database
+*.sqlite3
+
+# Media files
+media/
+
+# Static files
+staticfiles/
+
+# Logs
+*.log
+
+# Ignore environment-specific files
+.env
+
+# Ignore database configuration
+db.sqlite3
+
+# Ignore development and local settings
+settings_local.py
+
+.idea/
